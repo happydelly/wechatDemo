@@ -12,6 +12,7 @@ public class BasicController {
 	
 	public static final String USER_REDIS_SESSION = "user-redis-session";
 
+	public static final String TEST = "test1";
 	// 文件保存的命名空间
 	public static final String FILE_SPACE = "D:/wechat_videos_dev";
 	
