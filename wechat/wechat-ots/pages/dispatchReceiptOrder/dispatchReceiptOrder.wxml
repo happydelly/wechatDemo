@@ -1,0 +1,31 @@
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+  
+  <!-- <view  class="img" wx:if="{{fileList}}">
+    <view wx:for="{{fileList}}">
+      <image src="{{item.url}}" style='width:100px;height:150px;padding-left:5px;' mode="aspectFit"  data-arrindex='{{index}}'></image>
+    </view>
+  </view> -->
+
+  <van-row >
+    <view  wx:for="{{imageList}}">
+      <van-col span="8">
+        <image src="{{item}}" style='width:100px;height:150px;padding-left:3px;' mode="aspectFit"  data-src='{{item}}' bindtap="previewImage" >
+        </image>
+      </van-col>
+    </view>
+  </van-row>
+
+  <van-row gutter="5" custom-class="imgButton">
+    <van-col span="12" offset="2">
+      <van-button type="primary" size="small" custom-style="width:100px;margin-top:10px;"  bindtap="chooseImg" data-arrindex='{{index}}'>
+          拍照
+      </van-button>
+    </van-col>
+    <van-col>
+      <van-button type="primary" size="small" custom-style="width:100px;margin-top:10px;"  bindtap="uploadImage" data-arrindex='{{index}}'>
+          上传      
+      </van-button>
+    </van-col>
+  </van-row>
+
+</view> 

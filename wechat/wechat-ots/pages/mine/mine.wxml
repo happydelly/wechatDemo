@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+  <view class='container'>
+    <image src="{{faceUrl}}" class="face" bindtap='changeFace'></image>
+    <label class='nickname'>{{nickname}}</label>
+    <van-button type="primary" size="small" 
+        custom-style="width:100px;margin:20px 0px 20px 0px;" bind:click="logout">
+        注销
+      </van-button>
+  </view>
+  <view>
+    <van-cell is-link title="更新日志"
+      link-type="navigateTo"
+      url="/pages/index/index"
+    />
+    <van-cell is-link title="关于系统"
+      link-type="navigateTo"
+      url="/pages/index/index"
+    />
+  </view>
+  
+</view> 

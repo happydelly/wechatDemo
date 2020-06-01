@@ -1,0 +1,8 @@
+/**index.wxss**/
+.cooling{
+  width: 300px
+}
+.clickPlatForm{
+  color: blue
+}
+

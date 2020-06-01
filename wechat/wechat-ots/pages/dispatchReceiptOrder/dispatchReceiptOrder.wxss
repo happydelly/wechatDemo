@@ -1,0 +1,9 @@
+/**index.wxss**/
+.img{
+  display: flex;
+  flex-direction: row; 
+}
+.imgButton{
+  margin-top: 80px;
+}
+

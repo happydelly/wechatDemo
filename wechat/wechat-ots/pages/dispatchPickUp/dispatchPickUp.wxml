@@ -1,0 +1,100 @@
+<!--index.wxml-->
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+
+  <view wx:for="{{dispatchOrderlist}}" wx:key="id">
+    <van-collapse value="{{ dispatchOrderName }}" bind:open="onOpenDispatchOrder" bind:close="onCloseDispatchOrder" 
+    bind:change="" border="true" data-arrindex='{{index}}' accordion>
+      <van-collapse-item title="发车单号:{{item.departcode}}" name="{{item.id}}">
+        <van-row>
+          <van-col span="12">车牌号:{{item.carNumber}}</van-col>
+          <van-col span="12">车型:{{item.carType}}</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="24">发车单号:{{item.departcode}}</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="12">装载重量: {{item.loadVolume}}</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="12">装载体积: {{item.loadWeight}}</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="24">预计到车时间：{{item.expectArrivalTime}}</van-col>
+        </van-row>
+        <van-row custom-style="margin:20px;">
+          <van-col span="12">
+            <van-button type="primary" size="small" custom-style="width:235rpx;margin-bottom:30rpx;" bindtap="preCool" data-arrindex='{{index}}'>
+              预冷
+            </van-button>
+          </van-col>
+          <van-col span="12">
+            <van-button type="primary" size="small" custom-style="width:235rpx;margin-bottom:30rpx;" bindtap="endPreCool" data-arrindex='{{index}}'>
+              结束预冷
+            </van-button>
+          </van-col>
+        </van-row>
+        <view wx:for="{{dispatchWarehouselist}}" wx:key="warehouseCode">
+          <van-collapse value="{{ dispatchWarehouseName }}" bind:open="onOpenDispatchWarehouse" bind:close="onCloseDispatchWarehouse" 
+          bind:change="" data-arrindex='{{index}}' accordion>
+            <van-collapse-item title="提货点:{{item.warehouseName}}" name="{{item.warehouseCode}}">
+              <van-row>
+                <van-col span="24">提货地址:{{item.warehouseAddr}}</van-col>
+              </van-row>
+              <van-row>
+                <van-col span="24">提货电话:{{item.warehousePhone}}</van-col>
+              </van-row>
+              <van-row>
+                <van-col span="12" custom-class=".clickPlatForm">点击显示月台信息:</van-col>
+                <van-col span="12">{{platform}}</van-col>
+              </van-row>
+              <van-row>
+                <van-col span="12">
+                  <van-button type="primary" size="small" custom-style="width:235rpx;margin-bottom:30rpx;" bindtap="arrivals" data-arrindex='{{index}}'>
+                    到车
+                  </van-button>
+                </van-col>
+                <van-col span="12">
+                  <van-button type="primary" size="small" custom-style="width:235rpx;margin-bottom:30rpx;" bindtap="depart" data-arrindex='{{index}}'>
+                    发车
+                  </van-button>
+                </van-col>
+              </van-row>
+              <view wx:for="{{transportOrderlist}}" wx:key="id">
+                <van-collapse value="{{ transportOrderName }}" bind:open="onOpenTransportOrder" bind:close="onCloseTransportOrder"
+                bind:change="" accordion>
+                  <van-collapse-item title="订单号:{{item.orderCode}}" name="{{item.orderCode}}">
+                    <van-row>
+                      <van-col span="12">订单号:{{item.orderCode}}</van-col>
+                      <van-col span="12">中转:{{item.transFlag}}</van-col>
+                    </van-row>
+                    <van-row>
+                      <van-col span="24">收货单位:{{item.receiverUnitName}}</van-col>
+                    </van-row>
+                    <van-row>
+                      <van-col span="24">收货电话:{{item.receiverTel}}</van-col>
+                    </van-row>
+                    <van-row>
+                      <van-col span="24">收货详细地址:{{item.receiverAddress}}</van-col>
+                    </van-row>
+                    <van-row>
+                      <van-col span="24">中转地址:{{item.tCountryName}}{{item.tProvinceName}} {{item.tCityName}}{{item.tDistrictName}}{{item.tTownName}}
+                      </van-col>
+                    </van-row>
+                    <van-row>
+                      <van-col span="24">
+                        <van-button type="primary" size="small" custom-style="width:235rpx;" bindtap="showTransportOrderDetail" data-arrindex='{{index}}'>
+                          查看明细
+                        </van-button>
+                      </van-col>
+                    </van-row>
+                  </van-collapse-item>
+                </van-collapse>
+              </view>
+            </van-collapse-item>
+          </van-collapse>
+        </view>
+      </van-collapse-item>
+    </van-collapse>
+  </view>
+  <van-button icon="scan" type="primary" custom-style="position: fixed;bottom:0;width: 100%;" bindtap="scanCode">扫码</van-button>
+</view>

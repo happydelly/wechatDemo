@@ -1,0 +1,72 @@
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+  <block wx:if="{{isExist}}">
+    <view wx:for="{{transportDetailList}}" wx:key="id">
+      <van-cell-group>
+        <van-cell title="商品名称" value="{{item.itemName}}" />
+        <van-cell title="商品数量" value="{{item.actQty}}" />
+        <van-field placeholder="请输入拒收数量" label="拒收数量" border="{{ false }}" 
+          bind:change="onChangeSectionCollect" error-message="{{item.errorMsg}}"  error-message-align="right"
+          input-align="right" data-arrindex='{{index}}' type='number' /> 
+      </van-cell-group>
+    </view>
+
+
+    <van-row custom-class="popupRow">
+      <van-col offset="1">
+        <label>类型:</label>
+      </van-col>
+      <van-col span="12" custom-class="picker">
+        <picker name="sectionCollectTypeIndex" value="{{index}}" range-key="label" range="{{sectionCollectTypeArray}}" bindchange="changeSectionCollectType">
+          <label class="picker-label" style="color:{{typeColor}}">{{sectionCollectType}}</label>
+        </picker>
+      </van-col>
+    </van-row>
+
+    <van-row custom-class="popupRow">
+      <van-col offset="1">
+        <label>描述:</label>
+      </van-col>
+      <van-col span="12" custom-class="picker">
+        <view wx:if="{{sectionCollectflag}}">
+          <picker name="sectionCollectDescriptionIndex" value="{{index}}" range-key="label" range="{{sectionCollectDescriptionArray}}" bindchange="changeSectionCollectDescription" bindtap="checkSectionCollectDescription">
+            <label class="picker-label" style="color:{{descriptionColor}}">
+              {{sectionCollectDescription}}
+            </label>
+          </picker>
+        </view>
+        <view wx:if="{{!sectionCollectflag}}">
+          <label class="picker-label" bindtap="checkSectionCollectDescription">
+            {{sectionCollectDescription}}
+          </label>
+        </view>
+      </van-col>
+    </van-row>
+
+    <van-row custom-class="popupContent">
+      <van-col offset="1">
+        <textarea name="reasonContent" bindinput="bindWordLimit" class='content' placeholder='揽收异常描述(选填)'>
+        </textarea>
+      </van-col>
+    </van-row>
+
+    <van-row custom-class="popupContent">
+      <van-col offset="3">
+        <van-button type="primary" size="small" custom-style="width:100px;" 
+          bindtap='submitSectionCollect'>
+          提交
+        </van-button>
+      </van-col>
+      <van-col offset="2">
+        <van-button type="primary" size="small" custom-style="width:100px;" 
+          bindtap="closeSectionCollect" data-arrindex='{{index}}'>
+          取消
+        </van-button>
+      </van-col>
+    </van-row>
+  </block>
+  <block wx:if="{{!isExist}}">
+    <van-row>
+      <van-col span="24">该订单没有明细数据</van-col>
+    </van-row>
+  </block>
+</view>

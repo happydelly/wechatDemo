@@ -1,0 +1,35 @@
+/**index.wxss**/
+.cooling{
+  width: 300px
+}
+.cell{
+  text-align: left;
+
+}
+.clickPlatForm{
+  color: blue
+}
+.popupRow{
+  margin-top: 25px;
+  font-size: 35rpx;
+}
+.picker{
+  margin-left: 10px;
+}
+.picker-label{
+  font-weight: 300;
+  color: var(--cell-value-color,#969799);
+}
+.popupContent{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.content{
+    color: rgb(168, 161, 161);
+    background-color: #0a0b0f;
+    padding: 10px;
+    width: 270px;
+    font-size: 38rpx;
+}
+

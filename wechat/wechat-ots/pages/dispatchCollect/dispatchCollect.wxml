@@ -1,0 +1,151 @@
+<!--index.wxml-->
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+
+<view wx:for="{{dispatchOrderlist}}" wx:key="id">
+  <van-collapse value="{{ dispatchOrderName }}" bind:open="onOpenDispatchOrder" bind:close="onCloseDispatchOrder"
+  bind:change="" border="true"   data-arrindex='{{index}}' accordion>
+    <van-collapse-item title="发车单号:{{item.departcode}}" name="{{item.id}}" >
+      <van-row>
+        <van-col span="12">车牌号:{{item.carNumber}}</van-col>
+        <van-col span="12">车型:{{item.carType}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="24">发车单号:{{item.departcode}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="12">装载重量: {{item.loadVolume}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="12">装载体积: {{item.loadWeight}}</van-col>
+      </van-row>
+      <view wx:for="{{dispatchWarehouselist}}" wx:key="warehouseCode">
+        <van-collapse value="{{ dispatchWarehouseName }}" bind:open="onOpenDispatchWarehouse" bind:close="onCloseDispatchWarehouse" 
+        bind:change="" data-arrindex='{{index}}' accordion>
+          <van-collapse-item title="收货仓库:{{item.warehouseName}}"name="{{item.warehouseCode}}" >
+            <van-row>
+              <van-col span="24">收货仓地址:{{item.warehouseAddr}}</van-col>
+            </van-row>
+            <van-row>
+              <van-col span="24">收货仓电话:{{item.warehousePhone}}</van-col>
+            </van-row>
+            <view wx:for="{{transportOrderlist}}" wx:key="id">
+              <van-collapse value="{{ transportOrderName }}" bind:open="onOpenTransportOrder" bind:close="onCloseTransportOrder" 
+              bind:change=""  accordion>
+                <van-collapse-item title="订单号:{{item.orderCode}}" name="{{item.orderCode}}" >
+                  <van-row>
+                    <van-col span="12">订单号:{{item.orderCode}}</van-col>
+                    <van-col span="12">中转:{{item.transFlag}}</van-col>
+                  </van-row>
+                  <van-row>
+                    <van-col span="24">发货单位:{{item.senderUnitName}}</van-col>
+                  </van-row>
+                  <van-row>
+                    <van-col span="24">发货电话:{{item.senderTel}}</van-col>
+                  </van-row>
+                  <van-row>
+                    <van-col span="24">发货详细地址:{{item.senderAddress}}</van-col>
+                  </van-row>
+                  <van-row>
+                    <van-col span="24">中转地址:{{item.tCountryName}}{{item.tProvinceName}}
+                    {{item.tCityName}}{{item.tDistrictName}}{{item.tTownName}}</van-col>
+                  </van-row>
+                  <van-row>
+                    <van-col span="12">
+                      <van-button type="primary" size="small" custom-style="width:100px;" 
+                      bindtap="collect" data-arrindex='{{index}}'>
+                          揽收成功      
+                      </van-button>
+                    </van-col>
+                    <van-col span="12">
+                      <van-button type="primary" size="small" custom-style="width:100px;" 
+                      bindtap="sectionCollect" data-arrindex='{{index}}'>
+                          部分揽收      
+                      </van-button>
+                    </van-col>
+                  </van-row>
+                  <van-row custom-class="detailButton">
+                    <van-col span="12">
+                      <van-button type="primary" size="small" custom-style="width:100px;" 
+                        bindtap="showCollectFail" data-arrindex='{{index}}'>
+                          揽收失败      
+                      </van-button>
+                    </van-col>
+                    <van-col span="12">
+                      <van-button type="primary" size="small" custom-style="width:100px;" 
+                        bindtap="showTransportOrderDetail" data-arrindex='{{index}}'>
+                          查看明细      
+                      </van-button>
+                    </van-col>
+                  </van-row>
+                </van-collapse-item>
+              </van-collapse>
+            </view>
+          </van-collapse-item>
+        </van-collapse>
+      </view>
+    </van-collapse-item>
+  </van-collapse>
+</view>
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  round
+  custom-style="height: 85%;background-color: #0e0f1a;"
+  bind:close="onClose">
+<van-row custom-class="popupRow">
+  <van-col span="10" offset="7" custom-class="popupCol">揽收失败原因</van-col>
+</van-row>
+
+<van-row custom-class="popupRow">
+  <van-col offset="7">
+    <label>类型:</label>
+    
+  </van-col>
+  <van-col span="12" custom-class="picker">
+    <picker name="collectFailTypeIndex" value="{{index}}" range="{{collectFailReasonArray}}" range-key="label" bindchange="changeType" >
+    <label class="picker-label">{{collectFailType}}</label>
+    </picker>   
+  </van-col> 
+</van-row>
+<van-row custom-class="popupRow">
+  <van-col offset="7">
+    <label>描述:</label>
+  </van-col>
+  <van-col span="12" custom-class="picker" >
+    <view wx:if="{{crdflag}}">
+      <picker name="collectFailDescriptionIndex" value="{{index}}" 
+      range="{{collectFailDescriptionArray}}" range-key="label" bindchange="changeDescription" bindtap="checkCollectReasonDescription">
+        <label class="picker-label">{{collectFailDescription}}</label>
+      </picker>
+    </view>
+    <view wx:if="{{!crdflag}}">
+      <label class="picker-label" bindtap="checkCollectReasonDescription">{{collectFailDescription}}</label>
+    </view>
+  </van-col> 
+</van-row>
+<van-row custom-class="popupContent">
+  <van-col offset="1">
+    <textarea name="reasonContent" value="{{textareaInput}}"  bindinput="bindWordLimit"  class='content' placeholder='揽收失败描述(选填)'>
+    </textarea>
+  </van-col>
+</van-row>
+<van-row custom-class="popupContent">
+  <van-col offset="3">
+    <van-button type="primary" size="small" custom-style="width:100px;" bindtap='submitcollectFail' >
+                          提交      
+    </van-button>
+  </van-col>
+  <van-col offset="2">
+    <van-button type="primary" size="small" custom-style="width:100px;" bindtap="closeCollectFail" data-arrindex='{{index}}'>
+                          取消      
+    </van-button>
+  </van-col>
+</van-row>
+
+<!-- <view><van-button type="primary" size="small" custom-style="width:100px;"                                         bindtap="closeCollectFail" data-arrindex='{{index}}'>
+                          取消      
+                      </van-button>
+</view> -->
+</van-popup>
+<van-button icon="scan" type="primary" custom-style="position: fixed;bottom:0;width: 100%;" bindtap="scanCode">扫码</van-button>
+</view> 

@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+  <van-row>
+    <van-col span="24"  >
+      <image src="../resource/images/logo.png" style='width:750rpx;height:510rpx;'            mode="aspectFit"  data-arrindex='{{index}}'></image>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8" offset="2">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;" bind:click="showPickUp">
+        到车提货
+      </van-button>
+    </van-col>
+    <van-col span="8" offset="4">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;" bind:click="showCollect">
+        揽收
+      </van-button>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8" offset="2">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;">
+        发车
+      </van-button>
+    </van-col>
+    <van-col span="8" offset="4">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;" >
+        启运
+      </van-button>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8" offset="2">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;" bind:click="showAbnormal">
+        在途异常上报
+      </van-button>
+    </van-col>
+    <van-col span="8" offset="4">
+      <van-button type="primary" size="large" 
+        custom-style="width:235rpx;margin:5px;" bind:click="showSign">
+        货物签收
+      </van-button>
+    </van-col>
+  </van-row>
+</view> 

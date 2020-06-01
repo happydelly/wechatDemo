@@ -1,0 +1,55 @@
+{
+  "pages":[
+    "pages/userLogin/userLogin",
+    "pages/index/index",
+    
+    "pages/sectionSign/sectionSign",
+    "pages/sectionCollect/sectionCollect",
+    "pages/mine/mine",
+    "pages/dispatchReceiptOrder/dispatchReceiptOrder",
+    
+    "pages/dispatchSign/dispatchSign",
+    "pages/dispatchPickUp/dispatchPickUp",
+    "pages/dispatchAbnormal/dispatchAbnormal",
+    "pages/dispatchCollect/dispatchCollect",
+    
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "pages/resource/images/nav.png",
+        "selectedIconPath": "pages/resource/images/nav.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "pages/resource/images/mine.png",
+        "selectedIconPath": "pages/resource/images/mine.png",
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "/dist/button/index",
+    "van-row": "/dist/row/index",
+    "van-col": "/dist/col/index",
+    "van-collapse": "/dist/collapse/index",
+    "van-collapse-item": "/dist/collapse-item/index",
+    "van-cell": "/dist/cell/index",
+    "van-cell-group": "/dist/cell-group/index",
+    "van-popup": "/dist/popup/index",
+    "van-field": "/dist/field/index",
+    "van-uploader": "/dist/uploader/index",
+    "van-picker": "/dist/picker/index"
+  }
+}

@@ -1,0 +1,15 @@
+<view class="icon van-icon van-icon van-icon-upgrade van-icon-upgrade" style="font-size: 32rpx;">
+  <block wx:if="{{isExist}}">
+    <view wx:for="{{transportDetailList}}">
+      <van-cell-group>
+      <van-cell title="商品名称" value="{{item.itemName}}" />
+      <van-cell title="商品数量" value="{{item.actQty}}" />
+      </van-cell-group>
+    </view>
+  </block>
+  <block wx:if="{{!isExist}}">
+    <van-row>
+      <van-col span="24">该订单没有明细数据</van-col>
+    </van-row>
+  </block>
+</view> 
